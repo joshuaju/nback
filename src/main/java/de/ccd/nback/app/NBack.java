@@ -6,14 +6,14 @@ import de.ccd.nback.data.TestProtocol;
 import de.ccd.nback.logic.StimulusGenerator;
 import de.ccd.nback.logic.StimulusPresenter;
 
-import java.util.List;
-
 public class NBack {
 
     private final Console console;
+    private final StimulusGenerator generator;
 
-    public NBack(Console console) {
+    public NBack(Console console, StimulusGenerator generator) {
         this.console = console;
+        this.generator = generator;
     }
 
     public TestProtocol nback(TestConfiguration config) {
@@ -21,7 +21,7 @@ public class NBack {
         var presenter = new StimulusPresenter(console);
 
 
-        var stimuli = StimulusGenerator.decideNextStimulus(config);
+        var stimuli = generator.generateStimuli(config);
         stimuli.forEach(stimulus -> {
             presenter.displayStimulus(0, stimulus);
             var answer = presenter.waitForAnswer();

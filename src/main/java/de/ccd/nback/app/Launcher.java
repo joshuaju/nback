@@ -1,19 +1,19 @@
 package de.ccd.nback.app;
 
-import de.ccd.nback.adapter.Console;
-import de.ccd.nback.adapter.FileSystem;
+import de.ccd.nback.adapter.ConsoleImpl;
+import de.ccd.nback.adapter.FileSystemImpl;
+import de.ccd.nback.logic.RandomStimulusGenerator;
 
 public class Launcher {
 
     public static void main(String[] args) {
-        var console = new Console() { // TODO replace with impl
-        };
-        var fs = new FileSystem() { // TODO replace with impl
-        };
+        var console = new ConsoleImpl();
+        var fs = new FileSystemImpl();
+        var generator = new RandomStimulusGenerator();
 
         var configurator = new Configurator(console);
-        var nback = new NBack(console);
         var evaluator = new Evaluator(console, fs);
+        var nback = new NBack(console, generator);
 
         var config = configurator.configure();
         var protocol = nback.nback(config);
