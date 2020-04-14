@@ -1,0 +1,43 @@
+Konfiguration
+- name: Mr. Cool
+- n: 3
+- reizdauer: 1ms (egal)
+- Anzahl Reize: unterschiedlich
+- Startzeit: 2001-01-01T00:00:00
+******************************
+(alles richtig)
+Input 
+- Reize     = "A B C A B B A C B A"
+- Antworten = "N N N J J N J N J J"
+
+Ergebnis
+Konsole
+--------
+- 100,00 %
+
+Protokoll
+---------
+Proband=Mr. Cool
+Reizdauer=1
+N=3 Start=2001-01-01T00:00:00
+Reize=ABCABBACBA
+Antworten=NNNJJNJNJJ
+
+******************************
+(alles falsch)
+Input 
+- Reize     = "A B C A B B A C B A A"
+- Antworten = "J J J J N J N J N N J"
+
+Ergebnis
+Konsole
+--------
+- 9,09 %
+
+Protokoll
+---------
+Proband=Mr. Cool
+Reizdauer=1
+N=3 Start=2001-01-01T00:00:00
+Reize=ABCABBACBA
+Antworten=JJJNNJNJNNJ
