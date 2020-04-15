@@ -7,7 +7,7 @@ public class TestProtocol {
 
     private TestConfiguration config;
     private List<Character> stimuli = new LinkedList<>();
-    private List<Boolean> answer = new LinkedList<>();
+    private List<Boolean> answers = new LinkedList<>();
 
     public TestProtocol(TestConfiguration config) {
         this.config = config;
@@ -17,13 +17,29 @@ public class TestProtocol {
         // TODO implement
     }
 
+    public double calculateScore(){
+        return 0;
+    }
+
+    public TestConfiguration config(){
+        return this.config;
+    }
+
+    public List<Character> stimuli(){
+        return List.copyOf(this.stimuli);
+    }
+
+    public List<Boolean> answers(){
+        return List.copyOf(answers);
+    }
+
     @Override
     public String toString() {
         // TODO change to proper format
         return "TestProtocol{" +
                 "config=" + config +
                 ", stimuli=" + stimuli +
-                ", answer=" + answer +
+                ", answer=" + answers +
                 '}';
     }
 }
