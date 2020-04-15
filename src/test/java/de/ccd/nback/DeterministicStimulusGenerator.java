@@ -15,7 +15,7 @@ public class DeterministicStimulusGenerator implements StimulusGenerator {
     }
 
     @Override
-    public List<Character> generateStimuli(TestConfiguration config) {
+    public List<Character> generateStimuli(int numbersOfStimuli, int n) {
         return stimuli;
     }
 }

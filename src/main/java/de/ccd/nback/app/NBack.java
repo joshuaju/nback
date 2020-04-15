@@ -21,7 +21,7 @@ public class NBack {
         var presenter = new StimulusPresenter(console);
 
 
-        var stimuli = generator.generateStimuli(config);
+        var stimuli = generator.generateStimuli(config.numberOfStimuli(), config.n());
         stimuli.forEach(stimulus -> {
             presenter.displayStimulus(0, stimulus);
             var answer = presenter.waitForAnswer();

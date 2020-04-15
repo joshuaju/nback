@@ -9,7 +9,7 @@ public class Launcher {
     public static void main(String[] args) {
         var console = new ConsoleImpl();
         var fs = new FileSystemImpl();
-        var generator = new RandomStimulusGenerator();
+        var generator = new RandomStimulusGenerator(0.5);
 
         var configurator = new Configurator(console);
         var evaluator = new Evaluator(console, fs);

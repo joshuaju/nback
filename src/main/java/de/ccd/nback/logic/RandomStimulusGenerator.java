@@ -2,45 +2,55 @@ package de.ccd.nback.logic;
 
 import de.ccd.nback.data.TestConfiguration;
 
-import javax.swing.*;
-import java.lang.annotation.Repeatable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import java.util.Random;
 
 public class RandomStimulusGenerator implements StimulusGenerator {
 
-    private static final double repetitionProbability = 0.5;
+    private final double repetitionProbability;
+    private final Random random = new Random();
+
+    public RandomStimulusGenerator(double repetitionProbability) {
+        this.repetitionProbability = repetitionProbability;
+    }
 
     @Override
-    public List<Character> generateStimuli(TestConfiguration configuration) {
+    public List<Character> generateStimuli(int numbersOfStimuli, int n) {
         System.out.println("decide next: random");
-        var n = configuration.n();
-        var numberOfStimuli = configuration.numberOfStimuli();
 
-        return Stream.generate(decideNext(repeatStimulus(n), createDifferentStimulus(n)))
-                .limit(numberOfStimuli)
-                .collect(Collectors.toList());
+        List<Character> stimuli = new ArrayList<>(numbersOfStimuli);
+        for (int generated = 0; generated < numbersOfStimuli; generated++) {
+            var next = decideNext(stimuli, n);
+            stimuli.add(next);
+        }
+        return stimuli;
     }
 
-    private static Supplier<Character> decideNext(Supplier<Character> onRepeat, Supplier<Character> onRandom) {
-        var random = Math.random();
-        if (random < repetitionProbability) return onRandom;
-        else return onRepeat;
+    private Character decideNext(List<Character> stimuli, int n) {
+        boolean notRepeatable = (stimuli.size() - n) < 0;
+        if (notRepeatable) return randomChar();
+
+        if (random.nextDouble() >= repetitionProbability) return randomCharButNotNBack(stimuli, n);
+        else return repeatCharNBack(stimuli, n);
     }
 
-    private static Supplier<Character> repeatStimulus(int n) {
-        System.out.println("repeating: +");
-        return () -> '+'; // TODO implement
+    private Character repeatCharNBack(List<Character> chars, int nBack) {
+        return chars.get(chars.size() - nBack);
     }
 
-    private static Supplier<Character> createDifferentStimulus(int n) {
-        System.out.println("random: -");
-        return () -> '-'; // TODO implement
+    private Character randomChar() {
+        int letterIndex = random.nextInt(26);
+        return (char) (letterIndex + 'a');
     }
 
+    private Character randomCharButNotNBack(List<Character> chars, int nBack) {
+        var nbackChar = repeatCharNBack(chars, nBack);
+        Character randomCharButNotNBack;
+        do {
+            randomCharButNotNBack = randomChar();
+        } while (randomCharButNotNBack == nbackChar);
+        return randomCharButNotNBack;
+    }
 
 }

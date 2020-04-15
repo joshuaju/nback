@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface StimulusGenerator {
 
-    List<Character> generateStimuli(TestConfiguration config);
+    List<Character> generateStimuli(int numbersOfStimuli, int n);
 
 }
