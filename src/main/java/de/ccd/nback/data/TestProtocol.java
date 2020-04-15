@@ -1,5 +1,6 @@
 package de.ccd.nback.data;
 
+import java.text.MessageFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,32 +15,31 @@ public class TestProtocol {
     }
 
     public void append(char stimulus, boolean answer) {
-        // TODO implement
+        stimuli.add(stimulus);
+        answers.add(answer);
     }
 
-    public double calculateScore(){
-        return 0;
-    }
-
-    public TestConfiguration config(){
+    public TestConfiguration config() {
         return this.config;
     }
 
-    public List<Character> stimuli(){
+    public List<Character> stimuli() {
         return List.copyOf(this.stimuli);
     }
 
-    public List<Boolean> answers(){
+    public List<Boolean> answers() {
         return List.copyOf(answers);
     }
 
     @Override
     public String toString() {
         // TODO change to proper format
-        return "TestProtocol{" +
-                "config=" + config +
-                ", stimuli=" + stimuli +
-                ", answer=" + answers +
-                '}';
+        return MessageFormat.format(
+                """
+                        *** Protocol ***
+                        Config: {0}
+                        > Stimuli {1}
+                        > Answers {2}
+                        """, config, stimuli, answers);
     }
 }

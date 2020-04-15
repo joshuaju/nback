@@ -18,4 +18,14 @@ public class DeterministicConsole implements Console {
     public char nextChar() {
         return this.nextChars.pop();
     }
+
+    @Override
+    public void writeLine(String line) {
+        System.out.println(line);
+    }
+
+    @Override
+    public void clear() {
+        System.out.println("CLEAR");
+    }
 }

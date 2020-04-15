@@ -4,6 +4,7 @@ import de.ccd.nback.adapter.Console;
 import de.ccd.nback.data.TestConfiguration;
 
 import java.time.Instant;
+import java.util.Scanner;
 
 public class Configurator {
 
@@ -14,9 +15,17 @@ public class Configurator {
     }
 
     public TestConfiguration configure() {
-        System.out.println("configure");
-        return new TestConfiguration("dummy", 1, 2, 3, Instant.now());
-        // TODO implement
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter subject name: ");
+        var subjectName = sc.nextLine();
+        System.out.println("Enter n (1..9)");
+        var n = sc.nextInt();
+        System.out.println("Enter stimulus duration (ms)");
+        var duration = sc.nextInt();
+        System.out.println("Enter number stimuli (10..100)");
+        var numberOfStimuli = sc.nextInt();
+        // TODO check value ranges
+        return new TestConfiguration(subjectName, duration, n, numberOfStimuli, Instant.now());
     }
 
 }

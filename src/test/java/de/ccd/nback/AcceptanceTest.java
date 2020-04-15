@@ -2,6 +2,7 @@ package de.ccd.nback;
 
 import de.ccd.nback.app.NBack;
 import de.ccd.nback.data.TestConfiguration;
+import de.ccd.nback.logic.EvaluateTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +37,7 @@ public class AcceptanceTest {
         assertThat(protocol.config()).as("Check config is identical").isEqualTo(config);
         assertThat(protocol.stimuli()).as("Check stimuli are recorded").isEqualTo(Arrays.asList(stimuli));
         assertThat(protocol.answers()).as("Check answers are translated").isEqualTo(answersAsBool(Arrays.asList(answers)));
-        assertThat(protocol.calculateScore()).as("Check score").isEqualTo(1.00);
+        assertThat(EvaluateTest.evaluate(protocol.stimuli(), protocol.answers(), protocol.config().n())).as("Check score").isEqualTo(1.00);
     }
 
     @Test
@@ -61,7 +62,7 @@ public class AcceptanceTest {
         assertThat(protocol.config()).as("Check config is identical").isEqualTo(config);
         assertThat(protocol.stimuli()).as("Check stimuli are recorded").isEqualTo(Arrays.asList(stimuli));
         assertThat(protocol.answers()).as("Check answers are translated").isEqualTo(answersAsBool(Arrays.asList(answers)));
-        assertThat(protocol.calculateScore()).as("Check score").isEqualTo(0.0909);
+        assertThat(EvaluateTest.evaluate(protocol.stimuli(), protocol.answers(), protocol.config().n())).as("Check score").isEqualTo(0.0909);
     }
 
     private List<Boolean> answersAsBool(List<Character> answers) {

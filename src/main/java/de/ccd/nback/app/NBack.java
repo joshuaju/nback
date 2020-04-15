@@ -20,11 +20,10 @@ public class NBack {
         var protocol = new TestProtocol(config);
         var presenter = new StimulusPresenter(console);
 
-
         var stimuli = generator.generateStimuli(config.numberOfStimuli(), config.n());
         stimuli.forEach(stimulus -> {
-            presenter.displayStimulus(0, stimulus);
-            var answer = presenter.waitForAnswer();
+            presenter.displayStimulus(stimulus);
+            var answer = presenter.waitForAnswer(1000); // TODO make stoppable
             presenter.clearDisplay();
             protocol.append(stimulus, answer);
         });

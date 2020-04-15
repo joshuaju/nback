@@ -7,4 +7,14 @@ public record TestConfiguration(String subjectName,
                                 int n,
                                 int numberOfStimuli,
                                 Instant startTime) {
+
+    @Override
+    public String toString() {
+        return "subjectName='" + subjectName + '\'' +
+                ", stimulusDuration=" + stimulusDuration +
+                ", n=" + n +
+                ", numberOfStimuli=" + numberOfStimuli +
+                ", startTime=" + startTime +
+                '}';
+    }
 }

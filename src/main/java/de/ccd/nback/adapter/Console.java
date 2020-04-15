@@ -4,4 +4,8 @@ public interface Console {
 
     char nextChar();
 
+    void writeLine(String line);
+
+    void clear();
+
 }
