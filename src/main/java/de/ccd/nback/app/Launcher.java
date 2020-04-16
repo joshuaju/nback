@@ -5,6 +5,7 @@ import de.ccd.nback.adapter.FileSystemImpl;
 import de.ccd.nback.logic.EvaluateNBack;
 import de.ccd.nback.logic.RandomStimulusGenerator;
 
+import java.nio.file.Paths;
 import java.text.MessageFormat;
 
 public class Launcher {
@@ -22,8 +23,7 @@ public class Launcher {
 
         var score = EvaluateNBack.evaluate(protocol.stimuli(), protocol.answers(), protocol.config().n());
         console.writeLine(MessageFormat.format("Score {0,number, #.##}%", score*100d));
-        console.writeLine(protocol.toString());
-        // TODO write to file system
+        fs.writeFile(Paths.get(protocol.name()), protocol.toString());
     }
 
 }

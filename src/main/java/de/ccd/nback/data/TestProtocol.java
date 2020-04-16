@@ -42,4 +42,8 @@ public class TestProtocol {
                         > Answers {2}
                         """, config, stimuli, answers);
     }
+
+    public String name() {
+        return MessageFormat.format("nback_{0}", config.startTime());
+    }
 }
