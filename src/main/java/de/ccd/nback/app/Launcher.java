@@ -2,11 +2,9 @@ package de.ccd.nback.app;
 
 import de.ccd.nback.adapter.ConsoleImpl;
 import de.ccd.nback.adapter.FileSystemImpl;
-import de.ccd.nback.logic.EvaluateTest;
+import de.ccd.nback.logic.EvaluateNBack;
 import de.ccd.nback.logic.RandomStimulusGenerator;
 
-import javax.sound.midi.Soundbank;
-import java.io.Console;
 import java.text.MessageFormat;
 
 public class Launcher {
@@ -22,7 +20,7 @@ public class Launcher {
         var config = configurator.configure();
         var protocol = nback.nback(config);
 
-        var score = EvaluateTest.evaluate(protocol.stimuli(), protocol.answers(), protocol.config().n());
+        var score = EvaluateNBack.evaluate(protocol.stimuli(), protocol.answers(), protocol.config().n());
         console.writeLine(MessageFormat.format("Score {0,number, #.##}%", score*100d));
         console.writeLine(protocol.toString());
         // TODO write to file system

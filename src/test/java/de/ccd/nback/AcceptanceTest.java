@@ -2,14 +2,12 @@ package de.ccd.nback;
 
 import de.ccd.nback.app.NBack;
 import de.ccd.nback.data.TestConfiguration;
-import de.ccd.nback.logic.EvaluateTest;
-import org.junit.jupiter.api.BeforeEach;
+import de.ccd.nback.logic.EvaluateNBack;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,7 +35,7 @@ public class AcceptanceTest {
         assertThat(protocol.config()).as("Check config is identical").isEqualTo(config);
         assertThat(protocol.stimuli()).as("Check stimuli are recorded").isEqualTo(Arrays.asList(stimuli));
         assertThat(protocol.answers()).as("Check answers are translated").isEqualTo(answersAsBool(Arrays.asList(answers)));
-        assertThat(EvaluateTest.evaluate(protocol.stimuli(), protocol.answers(), protocol.config().n())).as("Check score").isEqualTo(1.00);
+        assertThat(EvaluateNBack.evaluate(protocol.stimuli(), protocol.answers(), protocol.config().n())).as("Check score").isEqualTo(1.00);
     }
 
     @Test
@@ -62,7 +60,7 @@ public class AcceptanceTest {
         assertThat(protocol.config()).as("Check config is identical").isEqualTo(config);
         assertThat(protocol.stimuli()).as("Check stimuli are recorded").isEqualTo(Arrays.asList(stimuli));
         assertThat(protocol.answers()).as("Check answers are translated").isEqualTo(answersAsBool(Arrays.asList(answers)));
-        assertThat(EvaluateTest.evaluate(protocol.stimuli(), protocol.answers(), protocol.config().n())).as("Check score").isEqualTo(0.0909);
+        assertThat(EvaluateNBack.evaluate(protocol.stimuli(), protocol.answers(), protocol.config().n())).as("Check score").isEqualTo(1d/11d); // 1d/11d = 0.0909...
     }
 
     private List<Boolean> answersAsBool(List<Character> answers) {
