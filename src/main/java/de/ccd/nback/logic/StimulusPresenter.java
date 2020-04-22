@@ -2,6 +2,9 @@ package de.ccd.nback.logic;
 
 import de.ccd.nback.adapter.Console;
 import de.ccd.nback.adapter.ConsoleImpl;
+import de.ccd.nback.data.Answer;
+
+import java.util.Optional;
 
 public class StimulusPresenter {
 
@@ -15,27 +18,18 @@ public class StimulusPresenter {
         console.writeLine("Stimulus: " + stimulus);
     }
 
-    public boolean waitForAnswer(int duration) {
+    public Answer waitForAnswer(int duration) {
         // TODO implement timeout, return false upon timeout
         var answer = console.nextChar();
         return switch (Character.toUpperCase(answer)) {
-            case 'J', 'Y' -> true;
-            default -> false;
+            case 'J', 'Y' -> Answer.Repetition;
+            case 'X' -> Answer.Cancel;
+            default -> Answer.NoRepetition;
         };
     }
 
     public void clearDisplay() {
         console.clear();
-    }
-
-    public static void main(String[] args) {
-        var presenter = new StimulusPresenter(new ConsoleImpl());
-        presenter.displayStimulus('A');
-
-        var answer = presenter.waitForAnswer(1000);
-        System.out.println("Answer: " + answer);
-
-        presenter.clearDisplay();
     }
 
 }

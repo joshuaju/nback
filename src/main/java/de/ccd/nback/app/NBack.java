@@ -1,6 +1,7 @@
 package de.ccd.nback.app;
 
 import de.ccd.nback.adapter.Console;
+import de.ccd.nback.data.Answer;
 import de.ccd.nback.data.TestConfiguration;
 import de.ccd.nback.data.TestProtocol;
 import de.ccd.nback.logic.StimulusGenerator;
@@ -21,12 +22,17 @@ public class NBack {
         var presenter = new StimulusPresenter(console);
 
         var stimuli = generator.generateStimuli(config.numberOfStimuli(), config.n());
-        stimuli.forEach(stimulus -> {
+
+
+        for (var stimulus : stimuli) {
             presenter.displayStimulus(stimulus);
-            var answer = presenter.waitForAnswer(1000); // TODO make stoppable
+            var answer = presenter.waitForAnswer(1000);
+
+            if (answer == Answer.Cancel) break;
+
             presenter.clearDisplay();
-            protocol.append(stimulus, answer);
-        });
+            protocol.append(stimulus, answer == Answer.Repetition);
+        }
 
         return protocol;
     }
