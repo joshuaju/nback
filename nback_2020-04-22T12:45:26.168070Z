@@ -1,0 +1,4 @@
+*** Protocol ***
+Config: subjectName='Joshua', stimulusDuration=100, n=9, numberOfStimuli=10, startTime=2020-04-22T12:45:26.168070Z}
+> Stimuli [o, k, f, x, e, z, u, e, i, o]
+> Answers [false, false, false, false, false, false, false, false, false, false]

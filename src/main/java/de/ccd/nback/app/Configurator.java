@@ -16,15 +16,16 @@ public class Configurator {
 
     public TestConfiguration configure() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter subject name: ");
+
+        System.out.print("Enter subject name: ");
         var subjectName = sc.nextLine();
-        System.out.println("Enter n (1..9)");
+        System.out.print("Enter n (1..9): ");
         var n = sc.nextInt();
-        System.out.println("Enter stimulus duration (ms)");
+        System.out.print("Enter stimulus duration (ms): ");
         var duration = sc.nextInt();
-        System.out.println("Enter number stimuli (10..100)");
+        System.out.print("Enter number stimuli (10..100): ");
         var numberOfStimuli = sc.nextInt();
-        // TODO check value ranges
+
         return new TestConfiguration(subjectName, duration, n, numberOfStimuli, Instant.now());
     }
 

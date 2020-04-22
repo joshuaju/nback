@@ -20,8 +20,8 @@ public class Launcher {
 
         var config = configurator.configure();
         var protocol = nback.nback(config);
-
         var score = EvaluateNBack.evaluate(protocol.stimuli(), protocol.answers(), protocol.config().n());
+
         console.writeLine(MessageFormat.format("Score {0,number, #.##}%", score*100d));
         fs.writeFile(Paths.get(protocol.name()), protocol.toString());
     }
