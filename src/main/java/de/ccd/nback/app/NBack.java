@@ -26,7 +26,7 @@ public class NBack {
 
         for (var stimulus : stimuli) {
             presenter.displayStimulus(stimulus);
-            var answer = presenter.waitForAnswer(1000);
+            var answer = presenter.waitForAnswer(config.stimulusDuration());
 
             if (answer == Answer.Cancel) break;
 
